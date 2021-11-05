@@ -8,7 +8,13 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "postinstall": "ngcc",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "purgemaps": "rm dist/angular-cc-library/bundles/artiomsu-angular-cc-library.umd.js.map && rm dist/angular-cc-library/fesm2015/artiomsu-angular-cc-library.js.map",
+    "build-lib": "ng build angular-cc-library --prod && npm run purgemaps",
+    "npm-pack": "cd dist/angular-cc-library && npm pack",
+    "package": "npm run build-lib && npm run npm-pack",
+    "publish": "npm publish $(command ls dist/angular-cc-library/*.tgz)",
+    "packagepublish": "npm run package && npm run publish"
   },
   "private": true,
   "dependencies": {
